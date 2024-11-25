@@ -16,7 +16,6 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        // Mendapatkan semua data peminjaman
         $peminjaman = Peminjaman::with(['inventaris', 'user'])->get();
         return view('peminjaman.index', compact('peminjaman'));
     }
@@ -41,7 +40,7 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
+
         $request->validate([
             'id_alat' => 'required|exists:inventaris,id',
             'id_peminjaman' => 'required|exists:users,id',
@@ -50,7 +49,6 @@ class PeminjamanController extends Controller
             'kondisi_pinjam' => 'required|in:Baik,Rusak',
         ]);
 
-        // Menyimpan data
         Peminjaman::create($request->all());
 
         return redirect()->route('peminjaman.index')
@@ -79,7 +77,7 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        // Validasi data
+
         $request->validate([
             'id_alat' => 'required|exists:inventaris,id',
             'id_peminjaman' => 'required|exists:users,id',
@@ -88,7 +86,6 @@ class PeminjamanController extends Controller
             'kondisi_pinjam' => 'required|in:Baik,Rusak',
         ]);
 
-        // Mengupdate data
         $peminjaman->update($request->all());
 
         return redirect()->route('peminjaman.index')
@@ -103,7 +100,6 @@ class PeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        // Menghapus data
         $peminjaman->delete();
 
         return redirect()->route('peminjaman.index')
