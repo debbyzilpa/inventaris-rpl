@@ -19,7 +19,6 @@ class KerusakanAlat extends Model
         'keterangan'
     ];
 
-    // Relasi dengan tabel inventaris (misalnya alat yang rusak)
     public function inventaris()
     {
         return $this->belongsTo(Inventaris::class, 'id_alat');
