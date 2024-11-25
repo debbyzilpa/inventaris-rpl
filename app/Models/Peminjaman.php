@@ -9,17 +9,17 @@ class Peminjaman extends Model
 {
     use HasFactory;
 
-    protected $table = 'peminjaman'; // Nama tabel
+    protected $table = 'peminjaman';
 
     protected $fillable = [
         'id_alat',
         'id_peminjaman',
         'jumlah',
         'tgl_peminjaman',
-        'kondisi_pinjam'
+        'kondisi_pinjam',
     ];
 
-    public function inventaris()
+    public function alat()
     {
         return $this->belongsTo(Inventaris::class, 'id_alat');
     }
